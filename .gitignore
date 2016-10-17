@@ -2,3 +2,5 @@
 *.pyc
 *._*
 .vim/
+common/autoload
+common/plugged

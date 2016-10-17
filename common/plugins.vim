@@ -1,17 +1,13 @@
-let s:vimplug_exists = g:keets_config_dir . '/vim/autoload/plug.vim'
-let g:keets_plugin_dir = g:keets_config_dir . '/vim/plugged'
-if has('nvim')
-    let s:vimplug_exists = g:keets_config_dir . '/nvim/autoload/plug.vim'
-    let g:keets_plugin_dir = g:keets_config_dir . '/nvim/plugged'
-endif
+let g:keets_vimplug_exists = g:keets_config_dir . '/common/autoload/plug.vim'
+let g:keets_plugin_dir = g:keets_config_dir . '/common/plugged'
 
-if !filereadable(s:vimplug_exists)
-  echo "Installing Vim-Plug..."
-  echo ""
-  silent !\curl -fLo s:vimplug_exists --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  let g:not_finish_vimplug = "yes"
+if !filereadable(g:keets_vimplug_exists)
+    echo "Installing Vim-Plug..."
+    echo ""
+    exec printf('!curl -fLo %s --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim', g:keets_vimplug_exists)
+    let g:not_finish_vimplug = "yes"
 
-  autocmd VimEnter * PlugInstall
+    autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin(g:keets_plugin_dir)
@@ -48,7 +44,7 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
     if executable('ctags')
-        Bundle 'majutsushi/tagbar'
+        Plug 'majutsushi/tagbar'
     endif
 
     Plug 'rhysd/conflict-marker.vim'

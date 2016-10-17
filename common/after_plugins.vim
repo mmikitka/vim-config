@@ -100,11 +100,11 @@
 
     " GVim (here instead of .gvimrc)
     if has('gui_running')
-        if s:LINUX()
+        if g:KeetsLINUX()
             set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-        elseif s:OSX()
+        elseif g:KeetsOSX()
             set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
-        elseif s:WINDOWS()
+        elseif g:KeetsWINDOWS()
             set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
         endif
     endif
@@ -145,8 +145,7 @@
     let g:ctrlp_open_new_file = 'h'
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$'
-    }
+        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$'}
 
     let g:ctrlp_use_caching = 0
     if executable('ag')

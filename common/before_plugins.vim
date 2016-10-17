@@ -1,53 +1,3 @@
-" Functions {
-
-    " Platform detection {
-        silent function! s:OSX()
-            return has('macunix')
-        endfunction
-
-        silent function! s:LINUX()
-            return has('unix') && !has('macunix') && !has('win32unix')
-        endfunction
-
-        silent function! s:WINDOWS()
-            return  (has('win32') || has('win64'))
-        endfunction
-    " }
-
-    " Initialize directories {
-    function! s:KeetsInitializeDirectories()
-        let parent = $HOME
-        let dir_list = {
-            \ 'vimbackup': 'backupdir',
-            \ 'vimviews': 'viewdir',
-            \ 'vimswap': 'directory'
-        }
-
-        if has('persistent_undo')
-            let dir_list['vimundo'] = 'undodir'
-        endif
-
-        for [dirname, settingname] in items(dir_list)
-            let directory = parent . '/.' . dirname . '/'
-            if exists("*mkdir")
-                if !isdirectory(directory)
-                    call mkdir(directory)
-                endif
-            endif
-
-            if !isdirectory(directory)
-                echo "Warning: Unable to create directory: " . directory
-                echo "Try: mkdir -p " . directory
-            else
-                let directory = substitute(directory, " ", "\\\\ ", "g")
-                exec "set " . settingname . "=" . directory
-            endif
-        endfor
-    endfunction
-    " }
-
-" }
-
 " Environment {
 
     " Establish compatibility before any other changes
@@ -64,18 +14,9 @@
     endif
 
     " Platform-specific {
-        if !s:WINDOWS()
+        if !g:KeetsWINDOWS()
             set shell=/bin/sh
         endif
-    " }
-
-    " Keets Vim configuration {
-        " Assume that all configuration files are stored
-        " in the directories above this file (init.vim).
-        let g:keets_config_dir = '../' . expand("<sfile>:p:h")
-
-        " Initialize all of the .vim* directories
-        call s:KeetsInitializeDirectories()
     " }
 
     filetype plugin indent on  " Automatically detect file types
