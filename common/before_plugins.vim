@@ -1,3 +1,5 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
+
 " Environment {
 
     " Establish compatibility before any other changes
@@ -27,7 +29,7 @@
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
     set shortmess+=filmnrxoOtT          " Avoid "hit enter" prompts
     set history=1000                    " Store lots of history
-    set spell                           " Spell checking on
+    set nospell                         " Spell checking off
     set hidden                          " Allow buffer switching without saving
 
     set backup

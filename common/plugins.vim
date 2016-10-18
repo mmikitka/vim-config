@@ -1,3 +1,5 @@
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
+
 let g:keets_vimplug_exists = g:keets_config_dir . '/common/autoload/plug.vim'
 let g:keets_plugin_dir = g:keets_config_dir . '/common/plugged'
 
@@ -9,6 +11,9 @@ if !filereadable(g:keets_vimplug_exists)
 
     autocmd VimEnter * PlugInstall
 endif
+
+" Set the runtimepath for the bootstrap
+exec printf('source %s', g:keets_vimplug_exists)
 
 call plug#begin(g:keets_plugin_dir)
 
@@ -40,7 +45,7 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
-    Plug 'scrooloose/syntastic', { 'on': 'SyntasticCheck' }
+    Plug 'scrooloose/syntastic'     " Do not use 'on' event-based loading since other plugins depend on syntastic
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
     if executable('ctags')
