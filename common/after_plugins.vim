@@ -27,8 +27,6 @@
         set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
     endif
 
-    set ttimeout
-    set ttimeoutlen=100             " Time out delay for key code or mapping key sequence
     set backspace=indent,eol,start  " Backspace configuration in insert mode
     set complete-=i                 " Do not scan current and included files
     set number                      " Show line numbers
