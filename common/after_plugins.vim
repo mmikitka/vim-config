@@ -145,7 +145,6 @@
     \       "args" : "-R -a  --tag-relative=yes --fields==+aimlS"
     \   }
     \}
-    let g:taggatron_verbose = 1
 
     " Sauce (project manager)
     let g:sauce_path = $HOME . '/.vimsauce'
