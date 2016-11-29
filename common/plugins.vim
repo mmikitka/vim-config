@@ -48,20 +48,26 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'scrooloose/syntastic'     " Do not use 'on' event-based loading since other plugins depend on syntastic
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
-    if executable('ctags')
+    if executable('ctags') || executable('universal-ctags')
         Plug 'majutsushi/tagbar'
+        Plug 'joonty/vim-taggatron'
+        Plug 'shawncplus/phpcomplete.vim'
     endif
 
     Plug 'rhysd/conflict-marker.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'matchit.zip'
     Plug 'luochen1990/rainbow', {'on': 'RainbowToggle' }
+    Plug 'ervandew/supertab'
 
     Plug 'joonty/vdebug'
     Plug 'janko-m/vim-test'
 
     " Default language packs in vim-polyglot and override as necessary
     Plug 'sheerun/vim-polyglot'
+
+    " Project management
+    Plug 'joonty/vim-sauce'
 
 " }
 

@@ -134,8 +134,21 @@
     nnoremap <silent> <Leader>tt :TagbarToggle<CR>
 
     " Ctags
-    " TODO: Schedule task to auto-update Ctags (cron + file watch for changes
-    " like "compass watch"? Place in ~/.config/nvim/vimtags
+    let g:tagcommand_defaults = {
+            \ "cmd": "ctags",
+            \ "args": "-R -a --tag-relative=yes",
+            \ "filesappend": "**"
+            \ }
+    let g:tagcommands = {
+    \    "php" : {
+    \       "tagfile" : ".php.tags",
+    \       "args" : "-R -a  --tag-relative=yes --fields==+aimlS"
+    \   }
+    \}
+    let g:taggatron_verbose = 1
+
+    " Sauce (project manager)
+    let g:sauce_path = $HOME . '/.vimsauce'
 
     " SnipMate
     let g:snips_author = 'Matt Mikitka <matt@mikitka.net>'

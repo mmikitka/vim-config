@@ -26,9 +26,11 @@
     function! s:KeetsInitializeDirectories()
         let parent = $HOME
         let dir_list = {
-            \ 'vimbackup': 'backupdir',
-            \ 'vimviews': 'viewdir',
-            \ 'vimswap': 'directory'}
+          \ 'vimbackup': 'backupdir',
+          \ 'vimviews': 'viewdir',
+          \ 'vimswap': 'directory',
+          \ 'vimsauce': 'null'
+        \}
 
         if has('persistent_undo')
             let dir_list['vimundo'] = 'undodir'
@@ -47,7 +49,9 @@
                 echo "Try: mkdir -p " . directory
             else
                 let directory = substitute(directory, " ", "\\\\ ", "g")
-                exec "set " . settingname . "=" . directory
+                if settingname != 'null'
+                  exec "set " . settingname . "=" . directory
+                endif
             endif
         endfor
     endfunction
