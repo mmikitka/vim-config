@@ -50,7 +50,6 @@ call plug#begin(g:keets_plugin_dir)
 
     if executable('ctags') || executable('universal-ctags')
         Plug 'majutsushi/tagbar'
-        Plug 'joonty/vim-taggatron'
         Plug 'shawncplus/phpcomplete.vim'
     endif
 

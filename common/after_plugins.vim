@@ -133,19 +133,6 @@
     " TagBar
     nnoremap <silent> <Leader>tt :TagbarToggle<CR>
 
-    " Ctags
-    let g:tagcommand_defaults = {
-            \ "cmd": "ctags",
-            \ "args": "-R -a --tag-relative=yes",
-            \ "filesappend": "**"
-            \ }
-    let g:tagcommands = {
-    \    "php" : {
-    \       "tagfile" : ".php.tags",
-    \       "args" : "-R -a  --tag-relative=yes --fields==+aimlS"
-    \   }
-    \}
-
     " Sauce (project manager)
     let g:sauce_path = $HOME . '/.vimsauce'
 
