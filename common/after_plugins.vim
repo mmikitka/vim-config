@@ -84,9 +84,6 @@
     " Clear search highlighting
     nmap <silent> <Leader>/ :nohlsearch<CR>
 
-    " Find merge conflict markers
-    map <Leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-
 " }
 
 " File Types {
@@ -161,16 +158,16 @@
     let g:rainbow_active = 0
     nnoremap <silent> <Leader>rr :RainbowToggle<CR>
 
+    " Supertab
+    let g:SuperTabDefaultCompletionType = "<c-n>"
+
     " Fugitive
     nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <Leader>gd :Gdiff<CR>
     nnoremap <silent> <Leader>gc :Gcommit<CR>
-    nnoremap <silent> <Leader>gb :Gblame<CR>
     nnoremap <silent> <Leader>gl :Glog<CR>
     nnoremap <silent> <Leader>gp :Git push<CR>
-    nnoremap <silent> <Leader>gr :Gread<CR>
     nnoremap <silent> <Leader>gw :Gwrite<CR>
-    nnoremap <silent> <Leader>ge :Gedit<CR>
     nnoremap <silent> <Leader>gg :SignifyToggle<CR>
 
     " UndoTree
@@ -208,7 +205,7 @@
 
     " VDebug
     let g:vdebug_options = {
-    \    "port" : 9000,
+        \    "port" : 9000,
         \    "server" : 'localhost',
         \    "timeout" : 20,
         \    "on_close" : 'detach',

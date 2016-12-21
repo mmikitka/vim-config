@@ -26,6 +26,7 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-unimpaired'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'terryma/vim-expand-region'
     Plug 'easymotion/vim-easymotion'
@@ -68,6 +69,17 @@ call plug#begin(g:keets_plugin_dir)
     " Project management
     Plug 'joonty/vim-sauce'
 
+" }
+
+" Vim/NeoVim Specific {
+    let s:keets_vim_fork = 'nvim'
+    if !has('nvim')
+      let s:keets_vim_fork = 'vim'
+    endif
+
+    if filereadable(g:keets_config_dir . '/' . s:keets_vim_fork . '/plugins.vim')
+        exec printf('source %s/%s/plugins.vim', g:keets_config_dir, s:keets_vim_fork)
+    endif
 " }
 
 call plug#end()

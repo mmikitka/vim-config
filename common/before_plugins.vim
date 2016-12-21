@@ -17,7 +17,7 @@
 
     " Platform-specific {
         if !g:KeetsWINDOWS()
-            set shell=/bin/sh
+            set shell=/bin/bash
         endif
     " }
 

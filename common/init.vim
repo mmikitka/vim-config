@@ -66,9 +66,19 @@ let g:keets_config_dir = expand("<sfile>:p:h"). '/..'
 " Initialize all of the relevant directories
 call s:KeetsInitializeDirectories()
 
+" Vim/NVim configuration sub-directory
+let s:keets_vim_fork = 'nvim'
+if !has('nvim')
+  let s:keets_vim_fork = 'vim'
+endif
+
 " Load configuration: before plugins {
     if filereadable(g:keets_config_dir . '/common/before_plugins.vim')
         exec printf('source %s/common/before_plugins.vim', g:keets_config_dir)
+    endif
+
+    if filereadable(g:keets_config_dir . '/' . s:keets_vim_fork . '/before_plugins.vim')
+        exec printf('source %s/%s/before_plugins.vim', g:keets_config_dir, s:keets_vim_fork)
     endif
 " }
 
@@ -76,10 +86,15 @@ call s:KeetsInitializeDirectories()
     if filereadable(g:keets_config_dir . '/common/plugins.vim')
         exec printf('source %s/common/plugins.vim', g:keets_config_dir)
     endif
+    " NOTE: Vim or NeoVim specific plugins must be loaded in common/plugins.vim
 " }
 
 " Load configuration: after plugins {
     if filereadable(g:keets_config_dir . '/common/after_plugins.vim')
         exec printf('source %s/common/after_plugins.vim', g:keets_config_dir)
+    endif
+
+    if filereadable(g:keets_config_dir . '/' . s:keets_vim_fork . '/after_plugins.vim')
+        exec printf('source %s/%s/after_plugins.vim', g:keets_config_dir, s:keets_vim_fork)
     endif
 " }
