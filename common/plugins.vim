@@ -44,8 +44,8 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-fugitive'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'honza/vim-snippets'
     Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
     Plug 'scrooloose/syntastic'     " Do not use 'on' event-based loading since other plugins depend on syntastic
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 

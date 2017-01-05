@@ -136,6 +136,10 @@
     " SnipMate
     let g:snips_author = 'Matt Mikitka <matt@mikitka.net>'
 
+    " UltiSnips
+    " Trigger configuration. Do not use <tab> with YouCompleteMe
+    let g:UltiSnipsExpandTrigger="<C-k>"
+
     " CtrlP
     let g:ctrlp_switch_buffer = 'Et'
     let g:ctrlp_open_new_file = 'h'
