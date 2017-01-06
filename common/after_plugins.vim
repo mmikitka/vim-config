@@ -42,7 +42,7 @@
     set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
     set whichwrap=b,s,h,l           " In visual mode, backspace, space, h, and l keys wrap to previous/next lines
     set scrolljump=1                " Lines to scroll when cursor leaves screen
-    set scrolloff=25                " Minimum lines to keep above and below cursor
+    set scrolloff=0                 " Minimum lines to keep above and below cursor
     set sidescrolloff=5             " Minimum lines to keep to the right of the cursor
     set foldenable                  " Auto fold code
     set wrap                        " Wrap long lines
@@ -110,6 +110,12 @@
 
 " Plugins {
 
+    " See http://vimcasts.org/blog/2013/02/habit-breaking-habit-making/
+    " HardMode
+    " Disable single-character movement keystrokes: h,j,k,l,page
+    " up/down,up/down,+, -
+    autocmd VimEnter,BufEnter,BufNewFile,BufReadPost * silent! :call HardMode()
+
     " Airline
     let g:airline_theme = 'solarized'
 
@@ -124,21 +130,22 @@
     " Matchit
     let b:match_ignorecase = 1
 
-    " NERDTree
-    let g:nerdtree_tabs_open_on_gui_startup=0
-
     " TagBar
     nnoremap <silent> <Leader>tt :TagbarToggle<CR>
-
-    " Sauce (project manager)
-    let g:sauce_path = $HOME . '/.vimsauce'
 
     " SnipMate
     let g:snips_author = 'Matt Mikitka <matt@mikitka.net>'
 
     " UltiSnips
-    " Trigger configuration. Do not use <tab> with YouCompleteMe
+    " Default expand trigger, Tab, conflicts with YCM.
     let g:UltiSnipsExpandTrigger="<C-k>"
+    let g:UltiSnipsJumpForwardTrigger="<C-k>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-j>"
+
+    " YouCompleteMe
+    let g:ycm_add_preview_to_completeopt = 1
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
 
     " CtrlP
     let g:ctrlp_switch_buffer = 'Et'
@@ -162,9 +169,6 @@
     let g:rainbow_active = 0
     nnoremap <silent> <Leader>rr :RainbowToggle<CR>
 
-    " Supertab
-    let g:SuperTabDefaultCompletionType = "<c-n>"
-
     " Fugitive
     nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <Leader>gd :Gdiff<CR>
@@ -181,7 +185,7 @@
     " Indent guides
     let g:indent_guides_guide_size = 1
     let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+    let g:indent_guides_exclude_filetypes = ['help']
 
     if !has('gui_running')
       let g:indent_guides_auto_colors = 0

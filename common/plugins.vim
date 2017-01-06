@@ -35,12 +35,12 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'mhinz/vim-signify'
     Plug 'osyo-manga/vim-over'
     Plug 'gcmt/wildfire.vim'
+    Plug 'wikitopian/hardmode'
 
 " }
 
 " Programming {
 
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-fugitive'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -58,16 +58,12 @@ call plug#begin(g:keets_plugin_dir)
     Plug 'jiangmiao/auto-pairs'
     Plug 'matchit.zip'
     Plug 'luochen1990/rainbow', {'on': 'RainbowToggle' }
-    Plug 'ervandew/supertab'
 
     Plug 'joonty/vdebug'
     Plug 'janko-m/vim-test'
 
     " Default language packs in vim-polyglot and override as necessary
     Plug 'sheerun/vim-polyglot'
-
-    " Project management
-    Plug 'joonty/vim-sauce'
 
 " }
 
