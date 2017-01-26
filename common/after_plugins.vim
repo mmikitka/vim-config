@@ -1,125 +1,142 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker
+" vim: sw=2 ts=2 sts=2 foldmethod=marker
 
-" Theme {
+" Theme {{{
 
-    let g:solarized_termcolors = 256
-    let g:solarized_termtrans = 1
-    let g:solarized_contrast = "normal"
-    let g:solarized_visibility = "normal"
+  let g:solarized_termcolors = 256
+  let g:solarized_termtrans = 1
+  let g:solarized_contrast = "normal"
+  let g:solarized_visibility = "normal"
 
-    set background=dark
-    let g:solarized_termcolors=16
-    colorscheme solarized
+  set background=dark
+  let g:solarized_termcolors=16
+  colorscheme solarized
 
-" }
+" }}}
 
-" UI {
+" UI {{{
 
-    set tabpagemax=15 " Only show 15 tabs
-    set showmode      " Display the current mode
+  set tabpagemax=15 " Only show 15 tabs
+  set showmode      " Display the current mode
 
-    highlight clear SignColumn   " SignColumn should match background
-    highlight clear LineNr       " Current line number row will have same background color in relative mode
+  highlight clear SignColumn   " SignColumn should match background
+  highlight clear LineNr       " Current line number row will have same background color in relative mode
 
-    if has("multi_byte")
-        set encoding=utf-8
-        setglobal fileencoding=utf-8
-        set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
-    endif
+  if has("multi_byte")
+      set encoding=utf-8
+      setglobal fileencoding=utf-8
+      set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
+  endif
 
-    set backspace=indent,eol,start  " Backspace configuration in insert mode
-    set complete-=i                 " Do not scan current and included files
-    set number                      " Show line numbers
-    set showmatch                   " Show matching brackets/parenthesis
-    set incsearch                   " Find as you type search
-    set hlsearch                    " Highlight search terms
-    set ignorecase                  " Case insensitive search
-    set smartcase                   " Case sensitive when upper case letters are typed and ignorecase is enabled
-    set winminheight=0              " Minimum height of inactive windows (with a min height of 0, only the status line is displayed)
-    set wildmenu                    " Show list of options while tabbing
-    set showcmd                     " Show partial commands in status line and selected characters/lines in visual mode
-    set ruler                       " Line and column number
-    set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-    set whichwrap=b,s,h,l           " In visual mode, backspace, space, h, and l keys wrap to previous/next lines
-    set scrolljump=1                " Lines to scroll when cursor leaves screen
-    set scrolloff=0                 " Minimum lines to keep above and below cursor
-    set sidescrolloff=5             " Minimum lines to keep to the right of the cursor
-    set foldenable                  " Auto fold code
-    set wrap                        " Wrap long lines
-    set list                        " Enable highlighting of problematic whitespace characters
-    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+ " Highlight problematic whitespace
-    set autoindent                  " Indent at the same level of the previous line
-    set shiftwidth=2                " Use indents of two columns
-    set expandtab                   " Tabs are spaces, not tabs
-    set tabstop=2                   " An indentation every two columns
-    set softtabstop=4               " Let backspace delete indent
-    set smarttab                    " Make "smart" indentation decisions
-    set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-    set splitright                  " Puts new vsplit windows to the right of the current
-    set splitbelow                  " Puts new split windows to the bottom of the current
-    set display+=lastline           " Display as much as possible of the last line of text in a window
-    set sessionoptions-=options     " Remove all options and mappings
+  set backspace=indent,eol,start  " Backspace configuration in insert mode
+  set complete-=i                 " Do not scan current and included files
+  set number                      " Show line numbers
+  set relativenumber              " Show relative line numbers
+  set showmatch                   " Show matching brackets/parenthesis
+  set incsearch                   " Find as you type search
+  set hlsearch                    " Highlight search terms
+  set ignorecase                  " Case insensitive search
+  set smartcase                   " Case sensitive when upper case letters are typed and ignorecase is enabled
+  set winminheight=0              " Minimum height of inactive windows (with a min height of 0, only the status line is displayed)
+  set wildmenu                    " Show list of options while tabbing
+  set showcmd                     " Show partial commands in status line and selected characters/lines in visual mode
+  set ruler                       " Line and column number
+  set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+  set wildignore+=*.so,*.swp,*.zip,*.pyc,*.o,*.obj " Ignore files from file system search commands
+  set whichwrap=b,s,h,l           " In visual mode, backspace, space, h, and l keys wrap to previous/next lines
+  set scrolljump=1                " Lines to scroll when cursor leaves screen
+  set scrolloff=0                 " Minimum lines to keep above and below cursor
+  set sidescrolloff=5             " Minimum lines to keep to the right of the cursor
+  set wrap                        " Wrap long lines
+  set list                        " Enable highlighting of problematic whitespace characters
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+ " Highlight problematic whitespace
+  set autoindent                  " Indent at the same level of the previous line
+  set shiftwidth=2                " Use indents of two columns
+  set expandtab                   " Tabs are spaces, not tabs
+  set tabstop=2                   " An indentation every two columns
+  set softtabstop=4               " Let backspace delete indent
+  set smarttab                    " Make "smart" indentation decisions
+  set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+  set splitright                  " Puts new vsplit windows to the right of the current
+  set splitbelow                  " Puts new split windows to the bottom of the current
+  set display+=lastline           " Display as much as possible of the last line of text in a window
+  set sessionoptions-=options     " Remove all options and mappings
 
-    if v:version > 703
-        set formatoptions+=j " Delete comment character when joining commented lines
-    endif
+  if v:version > 703
+      set formatoptions+=j " Delete comment character when joining commented lines
+  endif
 
-    " Allow color schemes to do bright colors without forcing bold.
-    if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-        set t_Co=16
-    elseif &term == 'xterm' || &term == 'screen'
-        set t_Co=256
-    endif
+  " Allow color schemes to do bright colors without forcing bold.
+  if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+      set t_Co=16
+  elseif &term == 'xterm' || &term == 'screen'
+      set t_Co=256
+  endif
 
-" }
+" }}}
 
-" Key Mappings {
+" Key Mappings {{{
 
-    let mapleader = "\<Space>"
-    set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+  let mapleader = "\<SPACE>"
+  let maplocalleader = "\<SPACE>"
+  set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
-    " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
+  " Yank from the cursor to the end of the line, to be consistent with C and D.
+  nnoremap Y y$
 
-    " Clear search highlighting
-    nmap <silent> <Leader>/ :nohlsearch<CR>
+  " Clear search highlighting
+  nmap <silent> <Leader>/ :nohlsearch<CR>
 
-" }
+" }}}
 
-" File Types {
+" File Types {{{
 
-    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+  autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+  autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 
-" }
+" }}}
 
-" GUI Settings {
+" GUI Settings {{{
 
-    " GVim (here instead of .gvimrc)
-    if has('gui_running')
-        if g:KeetsLINUX()
-            set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-        elseif g:KeetsOSX()
-            set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
-        elseif g:KeetsWINDOWS()
-            set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
-        endif
-    endif
+  " GVim (here instead of .gvimrc)
+  if has('gui_running')
+      if g:KeetsLINUX()
+          set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
+      elseif g:KeetsOSX()
+          set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+      elseif g:KeetsWINDOWS()
+          set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+      endif
+  endif
 
-" }
+" }}}
 
-" Plugins {
+" Build Environment {{{
+
+  nmap <silent> <Leader>m :make<CR>
+
+" }}}
+
+" Plugins {{{
+
+  " HardMode {{{
 
     " See http://vimcasts.org/blog/2013/02/habit-breaking-habit-making/
     " HardMode
     " Disable single-character movement keystrokes: h,j,k,l,page
     " up/down,up/down,+, -
-    autocmd VimEnter,BufEnter,BufNewFile,BufReadPost * silent! :call HardMode()
+    " TODO: Disabled temporarily
+    "autocmd VimEnter,BufEnter,BufNewFile,BufReadPost * silent! :call HardMode()
 
-    " Airline
+  " }}}
+
+  " Airline {{{
+
     let g:airline_theme = 'solarized'
 
-    " Ack
+  " }}}
+
+  " Ack {{{
+
     nnoremap <Leader>g :Ack!<Space>
     if executable('ag')
         let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
@@ -127,49 +144,74 @@
         let g:ackprg="ack-grep -H --nocolor --nogroup --column"
     endif
 
-    " Matchit
+  " }}}
+
+  " Matchit {{{
+
     let b:match_ignorecase = 1
 
-    " TagBar
+  " }}}
+
+  " TagBar {{{
+
     nnoremap <silent> <Leader>tt :TagbarToggle<CR>
 
-    " SnipMate
+  " }}}
+
+  " SnipMate {{{
+
     let g:snips_author = 'Matt Mikitka <matt@mikitka.net>'
 
-    " UltiSnips
+  " }}}
+
+  " UltiSnips {{{
+
     " Default expand trigger, Tab, conflicts with YCM.
     let g:UltiSnipsExpandTrigger="<C-k>"
     let g:UltiSnipsJumpForwardTrigger="<C-k>"
     let g:UltiSnipsJumpBackwardTrigger="<C-j>"
 
-    " YouCompleteMe
+  " }}}
+
+  " YouCompleteMe {{{
+
     let g:ycm_add_preview_to_completeopt = 1
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
 
-    " CtrlP
+  " }}}
+
+  " CtrlP {{{
+
+    let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_switch_buffer = 'Et'
-    let g:ctrlp_open_new_file = 'h'
+    let g:ctrlp_open_new_file = 'r'
+    let g:ctrlp_open_multiple_files = '2vjr'
+    let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$'}
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll|pyc|o|obj)$'
+      \ }
 
     let g:ctrlp_use_caching = 0
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'ag %s -l --nocolor -g ""']
     else
-        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-        let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-        \ }
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'find %s -type f']
     endif
 
-    " Rainbow
+  " }}}
+
+  " Rainbow {{{
+
     let g:rainbow_active = 0
     nnoremap <silent> <Leader>rr :RainbowToggle<CR>
 
-    " Fugitive
+  " }}}
+
+  " Fugitive {{{
+
     nnoremap <silent> <Leader>gs :Gstatus<CR>
     nnoremap <silent> <Leader>gd :Gdiff<CR>
     nnoremap <silent> <Leader>gc :Gcommit<CR>
@@ -178,11 +220,17 @@
     nnoremap <silent> <Leader>gw :Gwrite<CR>
     nnoremap <silent> <Leader>gg :SignifyToggle<CR>
 
-    " UndoTree
+  " }}}
+
+  " UndoTree {{{
+
     nnoremap <Leader>ut :UndotreeToggle<CR>
     let g:undotree_SetFocusWhenToggle=1
 
-    " Indent guides
+  " }}}
+
+  " Indent guides {{{
+
     let g:indent_guides_guide_size = 1
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_exclude_filetypes = ['help']
@@ -193,14 +241,23 @@
       autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
     endif
 
-    " vim-expand-region
+  " }}}
+
+  " vim-expand-region {{{
+
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
 
-    " PlantUML
+  " }}}
+
+  " PlantUML {{{
+
     let g:plantuml_executable_script = '/usr/bin/plantuml -tpng'
 
-    " Syntastic
+  " }}}
+
+  " Syntastic {{{
+
     let g:syntastic_check_on_open = 0
     let g:syntastic_check_on_wq = 0
     let g:syntastic_aggregate_errors = 0
@@ -211,7 +268,10 @@
                                \ 'active_filetypes': [],
                                \ 'passive_filetypes': [] }
 
-    " VDebug
+  " }}}
+
+  " VDebug {{{
+
     let g:vdebug_options = {
         \    "port" : 9000,
         \    "server" : 'localhost',
@@ -236,7 +296,10 @@
         \    "step_into" : "<F11>",
         \    "step_out" : "<S-F11>"}
 
-    " vim-test
+  " }}}
+
+  " vim-test {{{
+
     nmap <silent> <Leader>tn :TestNearest<CR>
     nmap <silent> <Leader>tf :TestFile<CR>
     nmap <silent> <Leader>ts :TestSuite<CR>
@@ -285,7 +348,6 @@
       endif
     endfunction
 
-    " make
-    nmap <silent> <Leader>m :make<CR>
+  " }}}
 
-" }
+" }}}

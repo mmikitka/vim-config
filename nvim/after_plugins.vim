@@ -1,11 +1,15 @@
-" Terminal {
+" UI {{{
+  set inccommand=nosplit
+" }
+
+" Terminal {{{
   nnoremap <silent> <leader>sh :terminal<CR>
 
   " Exit terminal with Esc key
   tnoremap <Esc> <C-\><C-n>
 " }
 
-" NeoMake {
+" NeoMake {{{
     " Trial NeoMake and do not remove Syntastic.
     " Reference: https://robots.thoughtbot.com/my-life-with-neovim
 
