@@ -31,6 +31,9 @@
   set history=1000                    " Store lots of history
   set nospell                         " Spell checking off
   set hidden                          " Allow buffer switching without saving
+  if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus " Store yank, delete, change, put results in clipboard
+  endif
 
   set backup
   if has('persistent_undo')
@@ -59,5 +62,15 @@
 
   set foldenable                " Auto fold code
   set foldmethod=marker         " Default to explicit fold markers
+
+" }}}
+
+" Mappings {{{
+
+  " Window navigation
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
 
 " }}}

@@ -14,7 +14,8 @@
     " Reference: https://robots.thoughtbot.com/my-life-with-neovim
 
     " Run NeoMake on read and write operations
-    autocmd! BufReadPost,BufWritePost * Neomake
+    " autocmd! BufReadPost,BufWritePost * Neomake - Too slow
+    nmap <silent> <Leader>m :Neomake<CR>
 
     " Disable inherited syntastic configuration
     let g:syntastic_mode_map = {

@@ -1,5 +1,55 @@
 " vim: sw=2 ts=2 sts=2 foldmethod=marker
 
+" Functions {{{
+
+  " From http://vimcasts.org/episodes/tabs-and-spaces/
+  " Set tabstop, softtabstop and shiftwidth to the same value
+  command! -nargs=* Stab call Stab()
+  function! Stab()
+    let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+    if l:tabstop > 0
+      let &l:sts = l:tabstop
+      let &l:ts = l:tabstop
+      let &l:sw = l:tabstop
+    endif
+    call SummarizeTabs()
+  endfunction
+
+  function! SummarizeTabs()
+    try
+      echohl ModeMsg
+      echon 'tabstop='.&l:ts
+      echon ' shiftwidth='.&l:sw
+      echon ' softtabstop='.&l:sts
+      if &l:et
+        echon ' expandtab'
+      else
+        echon ' noexpandtab'
+      endif
+    finally
+      echohl None
+    endtry
+  endfunction
+
+  " From http://vimcasts.org/episodes/tidying-whitespace/
+  function! Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+  endfunction
+
+  function! <SID>StripTrailingWhitespaces()
+    call Preserve("%s/\\s\\+$//e")
+  endfunction
+
+" }}}
+
 " Theme {{{
 
   let g:solarized_termcolors = 256
@@ -30,7 +80,6 @@
   set backspace=indent,eol,start  " Backspace configuration in insert mode
   set complete-=i                 " Do not scan current and included files
   set number                      " Show line numbers
-  set relativenumber              " Show relative line numbers
   set showmatch                   " Show matching brackets/parenthesis
   set incsearch                   " Find as you type search
   set hlsearch                    " Highlight search terms
@@ -47,13 +96,16 @@
   set scrolloff=0                 " Minimum lines to keep above and below cursor
   set sidescrolloff=5             " Minimum lines to keep to the right of the cursor
   set wrap                        " Wrap long lines
+  set linebreak                   " Break wraps on words
+  set textwidth=80                " Maximum number of columns
+  set formatoptions=ctq           " Auto-wrap text and comments when textwidth is exceeded
   set list                        " Enable highlighting of problematic whitespace characters
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+ " Highlight problematic whitespace
   set autoindent                  " Indent at the same level of the previous line
-  set shiftwidth=2                " Use indents of two columns
   set expandtab                   " Tabs are spaces, not tabs
-  set tabstop=2                   " An indentation every two columns
-  set softtabstop=4               " Let backspace delete indent
+  set shiftwidth=2                " Indentation used by indent commands in normal mode
+  set tabstop=2                   " Tabs are two columns wide
+  set softtabstop=2               " Space tabs (soft) are two columns wide
   set smarttab                    " Make "smart" indentation decisions
   set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
   set splitright                  " Puts new vsplit windows to the right of the current
@@ -93,6 +145,11 @@
   autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 
+  autocmd BufWritePre *.js,*.php,*.py :call <SID>StripTrailingWhitespaces()
+  autocmd BufNewFile,BufRead *.js,*.php,*.module,*.py set formatoptions=jqrocbt
+
+  "autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+
 " }}}
 
 " GUI Settings {{{
@@ -107,12 +164,6 @@
           set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
       endif
   endif
-
-" }}}
-
-" Build Environment {{{
-
-  nmap <silent> <Leader>m :make<CR>
 
 " }}}
 
@@ -132,6 +183,7 @@
   " Airline {{{
 
     let g:airline_theme = 'solarized'
+    set laststatus=2
 
   " }}}
 
@@ -196,9 +248,9 @@
     let g:ctrlp_use_caching = 0
     if executable('ag')
         set grepprg=ag\ --nogroup\ --nocolor
-        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'ag %s -l --nocolor -g ""']
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     else
-        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'find %s -type f']
+        let g:ctrlp_user_command = 'find %s -type f'
     endif
 
   " }}}
@@ -254,6 +306,10 @@
 
     let g:plantuml_executable_script = '/usr/bin/plantuml -tpng'
 
+  " }}}
+
+  " Previm {{{
+    let g:previm_open_cmd = 'firefox'
   " }}}
 
   " Syntastic {{{

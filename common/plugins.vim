@@ -70,8 +70,8 @@
   " Default language packs in vim-polyglot and override as necessary
   Plug 'sheerun/vim-polyglot'
 
-  Plug 'mmikitka/vim-php-folding'
-  Plug 'mmikitka/vim-yaml-folding'
+  "Plug 'mmikitka/vim-php-folding'
+  "Plug 'mmikitka/vim-yaml-folding'
 
 " }}}
 
