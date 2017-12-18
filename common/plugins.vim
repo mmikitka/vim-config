@@ -51,6 +51,8 @@
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'scrooloose/syntastic'     " Do not use 'on' event-based loading since other plugins depend on syntastic
+  Plug 'jimhester/lintr'
+
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 
   if executable('ctags') || executable('universal-ctags')
@@ -60,7 +62,7 @@
 
   Plug 'rhysd/conflict-marker.vim'
   "Plug 'jiangmiao/auto-pairs' " Temporarily disabled: I seem to be deleting the pair often
-  Plug 'matchit.zip'
+  Plug 'vim-scripts/matchit.zip'
   Plug 'luochen1990/rainbow', {'on': 'RainbowToggle' }
 
   Plug 'joonty/vdebug'
@@ -69,6 +71,7 @@
 
   " Default language packs in vim-polyglot and override as necessary
   Plug 'sheerun/vim-polyglot'
+  Plug 'jalvesaq/Nvim-R'
 
   "Plug 'mmikitka/vim-php-folding'
   "Plug 'mmikitka/vim-yaml-folding'
