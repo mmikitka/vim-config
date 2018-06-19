@@ -17,11 +17,15 @@
 
   autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
   autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+  autocmd BufNewFile,BufRead *.py.j2 set filetype=python
+  autocmd BufNewFile,BufRead *.py.template set filetype=python
 
-  autocmd BufWritePre *.js,*.php,*.py :call <SID>StripTrailingWhitespaces()
+  "autocmd BufWritePre *.js,*.php,*.py :call <SID>StripTrailingWhitespaces()
   autocmd BufNewFile,BufRead *.js,*.php,*.module,*.py set formatoptions=jqrocbt
 
-  autocmd FileType cpp setlocal ts=4 sts=4 sw=4 tw=90
+  autocmd FileType cpp,python setlocal ts=4 sts=4 sw=4 tw=89
+
+  autocmd BufNewFile,BufRead *.opus set foldmethod=indent
 
 " }}}
 
