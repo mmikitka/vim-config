@@ -125,6 +125,8 @@
       set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
   endif
 
+  set visualbell                  " Disables audio bell and enables visual bell
+  set t_vb=                       " Disable visual bell
   set backspace=indent,eol,start  " Backspace configuration in insert mode
   set complete-=i                 " Do not scan current and included files
   set number                      " Show line numbers
